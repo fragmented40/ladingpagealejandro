@@ -1,0 +1,785 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Portafolio Profesional - Rafael Montes</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css" rel="stylesheet">
+  <style>
+    :root {
+      --primary-color: #b4975a;      /* Dorado principal */
+      --dark-color: #121212;         /* Negro mate */
+      --darker-color: #0d0d0d;       /* Negro más oscuro */
+      --light-color: #e0e0e0;        /* Texto claro */
+      --gray-color: #7a7a7a;         /* Texto gris */
+      --card-bg: #1a1a1a;            /* Fondo de tarjetas */
+      --transition: all 0.3s ease;
+    }
+    
+    body {
+      background-color: var(--dark-color);
+      color: var(--light-color);
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      padding-top: 20px;
+      overflow-x: hidden;
+      background: linear-gradient(135deg, #0a0a0a, #1a1a1a);
+    }
+    
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 15px;
+    }
+    
+    /* Header */
+    .header-title {
+      text-align: center;
+      margin-bottom: 30px;
+      padding: 30px;
+      background: linear-gradient(135deg, #0d0d0d, #1a1a1a);
+      color: var(--primary-color);
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+      border: 1px solid var(--primary-color);
+      position: relative;
+      overflow: hidden;
+      animation: fadeIn 1s ease-out;
+    }
+    
+    .header-title::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background: linear-gradient(90deg, transparent, var(--primary-color), transparent);
+    }
+    
+    .header-title h1 {
+      font-weight: 700;
+      margin-bottom: 10px;
+      font-size: 2.8rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      text-shadow: 0 0 10px rgba(180, 151, 90, 0.5);
+    }
+    
+    .header-title p {
+      font-size: 1.3rem;
+      color: var(--primary-color);
+      font-weight: 300;
+      letter-spacing: 1px;
+    }
+    
+    /* Info Container */
+    .info-container {
+      display: grid;
+      grid-template-columns: 1fr 2fr 1fr;
+      gap: 20px;
+      margin-bottom: 40px;
+    }
+    
+    @media (max-width: 992px) {
+      .info-container {
+        grid-template-columns: 1fr;
+      }
+    }
+    
+    .profile-section, .info-section, .actions-section {
+      background: var(--card-bg);
+      border-radius: 10px;
+      padding: 25px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+      border: 1px solid rgba(180, 151, 90, 0.2);
+      transition: var(--transition);
+      animation: slideUp 0.8s ease-out;
+    }
+    
+    .profile-section:hover, .info-section:hover, .actions-section:hover {
+      border-color: var(--primary-color);
+      transform: translateY(-5px);
+    }
+    
+    .profile-img {
+      width: 180px;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 3px solid var(--primary-color);
+      box-shadow: 0 0 20px rgba(180, 151, 90, 0.3);
+      transition: var(--transition);
+    }
+    
+    .profile-img:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 30px rgba(180, 151, 90, 0.5);
+    }
+    
+    .profile-section h3 {
+      color: var(--primary-color);
+      font-weight: 700;
+      margin-top: 15px;
+      font-size: 1.8rem;
+      border-bottom: 1px solid var(--primary-color);
+      padding-bottom: 10px;
+      display: inline-block;
+    }
+    
+    .contact-info {
+      margin-top: 20px;
+    }
+    
+    .contact-item {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 15px;
+      color: var(--light-color);
+      padding: 8px 0;
+      border-bottom: 1px solid rgba(180, 151, 90, 0.1);
+    }
+    
+    .contact-item i {
+      margin-right: 8px;
+      color: var(--primary-color);
+      font-size: 1.2rem;
+    }
+    
+    .section-title {
+      color: var(--primary-color);
+      border-bottom: 2px solid var(--primary-color);
+      padding-bottom: 8px;
+      margin-bottom: 20px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      position: relative;
+    }
+    
+    .section-title::after {
+      content: "";
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 50px;
+      height: 2px;
+      background: var(--primary-color);
+    }
+    
+    .subsection-title {
+      color: var(--primary-color);
+      font-size: 1.2rem;
+      margin: 30px 0 15px;
+      padding-left: 10px;
+      border-left: 3px solid var(--primary-color);
+    }
+    
+    .about-me {
+      margin-bottom: 25px;
+      line-height: 1.7;
+      color: #d0d0d0;
+    }
+    
+    .skills-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 25px;
+    }
+    
+    .skill-tag {
+      background: rgba(180, 151, 90, 0.1);
+      color: var(--primary-color);
+      padding: 8px 18px;
+      border-radius: 5px;
+      font-size: 0.9rem;
+      display: flex;
+      align-items: center;
+      border: 1px solid rgba(180, 151, 90, 0.3);
+      transition: var(--transition);
+    }
+    
+    .skill-tag:hover {
+      background: rgba(180, 151, 90, 0.2);
+      transform: translateY(-3px);
+    }
+    
+    .skill-tag i {
+      margin-right: 5px;
+      color: var(--primary-color);
+    }
+    
+    .btn-vertical {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+    
+    .btn-vertical label {
+      font-weight: 600;
+      color: var(--primary-color);
+      margin-bottom: -5px;
+      letter-spacing: 1px;
+    }
+    
+    .btn-whatsapp, .btn-email, .btn-portfolio {
+      background: transparent;
+      color: var(--light-color);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      border: 1px solid var(--primary-color);
+      padding: 12px;
+      transition: var(--transition);
+      position: relative;
+      overflow: hidden;
+      z-index: 1;
+    }
+    
+    .btn-whatsapp::before, .btn-email::before, .btn-portfolio::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 0;
+      height: 100%;
+      background: var(--primary-color);
+      transition: var(--transition);
+      z-index: -1;
+    }
+    
+    .btn-whatsapp:hover::before, .btn-email:hover::before, .btn-portfolio:hover::before {
+      width: 100%;
+    }
+    
+    .btn-whatsapp:hover, .btn-email:hover, .btn-portfolio:hover {
+      color: var(--dark-color);
+    }
+    
+    .btn-whatsapp:hover i, .btn-email:hover i, .btn-portfolio:hover i {
+      color: var(--dark-color);
+    }
+    
+    .btn-whatsapp i, .btn-email i, .btn-portfolio i {
+      color: var(--primary-color);
+      transition: var(--transition);
+    }
+    
+    /* Gallery */
+    .gallery {
+      margin-bottom: 50px;
+    }
+    
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 20px;
+    }
+    
+    .gallery-item {
+      position: relative;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+      height: 280px;
+      cursor: pointer;
+      transition: var(--transition);
+      border: 1px solid rgba(180, 151, 90, 0.2);
+      animation: fadeIn 0.6s ease-out;
+    }
+    
+    .gallery-item:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 8px 25px rgba(180, 151, 90, 0.3);
+      border-color: var(--primary-color);
+    }
+    
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: var(--transition);
+    }
+    
+    .gallery-item:hover img {
+      transform: scale(1.05);
+    }
+    
+    .item-overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(transparent, rgba(18, 18, 18, 0.9));
+      color: white;
+      padding: 20px;
+      transition: var(--transition);
+      transform: translateY(100%);
+    }
+    
+    .gallery-item:hover .item-overlay {
+      transform: translateY(0);
+    }
+    
+    .item-overlay h5 {
+      font-size: 1.1rem;
+      margin-bottom: 5px;
+      color: var(--primary-color);
+    }
+    
+    .item-overlay p {
+      font-size: 0.9rem;
+      margin-bottom: 0;
+      opacity: 0.8;
+    }
+    
+    .item-type {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      background: rgba(18, 18, 18, 0.7);
+      color: var(--primary-color);
+      padding: 5px 12px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      border: 1px solid var(--primary-color);
+    }
+    
+    /* Loading Overlay */
+    .loading-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(18, 18, 18, 0.95);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+      color: var(--primary-color);
+    }
+    
+    .spinner {
+      width: 50px;
+      height: 50px;
+      border: 5px solid rgba(180, 151, 90, 0.3);
+      border-radius: 50%;
+      border-top-color: var(--primary-color);
+      animation: spin 1s linear infinite;
+    }
+    
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+    
+    /* Footer */
+    .footer {
+      background: var(--darker-color);
+      color: var(--gray-color);
+      padding: 25px 0;
+      text-align: center;
+      border-radius: 10px 10px 0 0;
+      border-top: 1px solid rgba(180, 151, 90, 0.2);
+    }
+    
+    .footer p {
+      margin: 0;
+      font-size: 0.9rem;
+      letter-spacing: 1px;
+    }
+    
+    .gold-divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--primary-color), transparent);
+      margin: 20px 0;
+    }
+    
+    .no-content {
+      text-align: center;
+      padding: 30px;
+      background: rgba(26, 26, 26, 0.5);
+      border-radius: 10px;
+      border: 1px dashed var(--primary-color);
+      color: var(--gray-color);
+    }
+    
+    /* Modal */
+    .gallery-modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.9);
+      z-index: 2000;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+    
+    .gallery-modal.active {
+      opacity: 1;
+      pointer-events: all;
+    }
+    
+    .modal-content {
+      max-width: 90%;
+      max-height: 90vh;
+      position: relative;
+    }
+    
+    .modal-content img {
+      max-width: 100%;
+      max-height: 80vh;
+      border-radius: 8px;
+      box-shadow: 0 0 30px rgba(0,0,0,0.6);
+    }
+    
+    .modal-close {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      background: rgba(0,0,0,0.7);
+      color: var(--primary-color);
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      cursor: pointer;
+      border: 1px solid var(--primary-color);
+      transition: var(--transition);
+    }
+    
+    .modal-close:hover {
+      background: var(--primary-color);
+      color: var(--dark-color);
+    }
+    
+    .modal-caption {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: rgba(0, 0, 0, 0.821);
+      padding: 15px;
+      color: white;
+      text-align: center;
+      border-radius: 0 0 8px 8px;
+    }
+    
+    .modal-caption h4 {
+      color: var(--primary-color);
+      margin-bottom: 5px;
+    }
+    
+    /* Animaciones */
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    
+    @keyframes slideUp {
+      from { 
+        opacity: 0; 
+        transform: translateY(20px);
+      }
+      to { 
+        opacity: 1; 
+        transform: translateY(0);
+      }
+    }
+    
+    /* Responsive */
+    @media (max-width: 768px) {
+      .header-title h1 {
+        font-size: 2rem;
+      }
+      
+      .header-title p {
+        font-size: 1rem;
+      }
+      
+      .info-container {
+        gap: 15px;
+      }
+      
+      .gallery-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .modal-content {
+        max-width: 95%;
+      }
+      
+      .profile-img {
+        width: 140px;
+        height: 140px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Overlay de carga -->
+  <div class="loading-overlay" id="loadingOverlay">
+    <div class="spinner"></div>
+    <div class="mt-4">Cargando portafolio...</div>
+  </div>
+
+  <!-- Modal para galería -->
+  <div class="gallery-modal" id="galleryModal">
+    <div class="modal-content">
+      <div class="modal-close" id="modalClose">
+        <i class="bi bi-x-lg"></i>
+      </div>
+      <div id="modalMedia"></div>
+      <div class="modal-caption" id="modalCaption">
+        <h4 id="modalTitle">Título del proyecto</h4>
+        <p id="modalDescription">Descripción del proyecto</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <!-- Header -->
+    <div class="header-title">
+      <h1>Rafael Montes</h1>
+      <p>Diseñador Gráfico & Especialista en Branding</p>
+    </div>
+
+    <!-- Panel de información -->
+    <div class="info-container">
+      <div class="profile-section">
+        <img src="perfil.jpg" alt="Imagen de perfil" class="profile-img mb-4">
+        <h3 class="mb-3">Rafael Montes</h3>
+        <div class="contact-info">
+          <div class="contact-item">
+            <i class="bi bi-geo-alt"></i> Santa Inés, Edo Aragua
+          </div>
+          <div class="contact-item">
+            <i class="bi bi-briefcase"></i> 5 años de experiencia
+          </div>
+          <div class="contact-item">
+            <i class="bi bi-star"></i> Especialista en Branding
+          </div>
+        </div>
+      </div>
+      
+      <div class="info-section">
+        <h5 class="section-title">Sobre Mí</h5>
+        <div class="about-me">
+          Diseñador gráfico con 5 años de experiencia especializado en publicidad, identidad gráfica y social media. Mi enfoque creativo combina estética minimalista con funcionalidad para crear soluciones visuales impactantes que comunican eficazmente la esencia de cada marca. Apasionado por el branding y la creación de identidades memorables que conectan con las audiencias.
+        </div>
+        
+        <div class="gold-divider"></div>
+        
+        <h5 class="section-title">Habilidades</h5>
+        <div class="skills-container">
+          <div class="skill-tag">
+            <i class="bi bi-palette"></i> Diseño Gráfico
+          </div>
+          <div class="skill-tag">
+            <i class="bi bi-brush"></i> Branding
+          </div>
+          <div class="skill-tag">
+            <i class="bi bi-layers"></i> Adobe Photoshop
+          </div>
+          <div class="skill-tag">
+            <i class="bi bi-pen"></i> Illustrator
+          </div>
+          <div class="skill-tag">
+            <i class="bi bi-share"></i> Social Media
+          </div>
+          <div class="skill-tag">
+            <i class="bi bi-camera"></i> Fotografía
+          </div>
+          <div class="skill-tag">
+            <i class="bi bi-film"></i> Edición de Video
+          </div>
+          <div class="skill-tag">
+            <i class="bi bi-box"></i> Blender 3D
+          </div>
+        </div>
+        
+        <div class="gold-divider"></div>
+        
+        <h5 class="section-title">Especialización</h5>
+        <p>Publicidad, Identidad gráfica, Social Media, Branding, Diseño 3D</p>
+        
+        <div class="contact-info">
+          <div class="contact-item">
+            <i class="bi bi-envelope"></i> alejandrorf99@gmail.com
+          </div>
+          <div class="contact-item">
+            <i class="bi bi-whatsapp"></i> +58 416 808 3359
+          </div>
+        </div>
+      </div>
+      
+      <div class="actions-section">
+        <div class="btn-vertical">
+          <label>Contacto</label>
+          <a href="https://wa.me/584168083359" target="_blank" class="btn btn-whatsapp">
+            <i class="bi bi-whatsapp"></i> WhatsApp
+          </a>
+          <a href="mailto:alejandrorf99@gmail.com" class="btn btn-email">
+            <i class="bi bi-envelope"></i> Email
+          </a>
+          
+          <div class="gold-divider"></div>
+          
+          <label>Portafolio</label>
+          <a href="cvalejandromontes.pdf" target="_blank" class="btn btn-portfolio">
+            <i class="bi bi-download"></i> Descargar CV
+          </a>
+          
+          <div class="gold-divider"></div>
+          
+          <label>Redes Sociales</label>
+          <a href="https://www.instagram.com/alerfm_?igsh=MWR6aTlucW1hZHJ4ZQ==" target="_blank" class="btn btn-portfolio">
+            <i class="bi bi-instagram"></i> Instagram
+          </a>
+          <a href="https://www.behance.net/gallery/224563635/Portfolio" target="_blank" class="btn btn-portfolio">
+            <i class="bi bi-behance"></i> Behance
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sección de Galería -->
+    <div class="gallery">
+      <h5 class="section-title">Portafolio de Trabajos</h5>
+      <p class="text-center mb-4">Explora mis proyectos más recientes de diseño gráfico y branding</p>
+      
+      <div class="gallery-grid" id="imagesContainer">
+        <!-- Imágenes se cargarán aquí -->
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+      <div class="container">
+        <p>© 2023 Rafael Montes - Diseñador Gráfico | Todos los derechos reservados</p>
+        <p class="mt-2">Diseñado con pasión y dedicación</p>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script>
+    $(document).ready(function() {
+      // Simular carga de archivos
+      setTimeout(() => {
+        // ARRAY DE IMÁGENES - TODAS EN LA MISMA CARPETA
+        const imagenes = [
+          { 
+            src: '1.jpg', 
+            title: 'MARCA', 
+            description: 'Marca para empresas' 
+          },
+          { 
+            src: '2.jpg', 
+            title: 'Diseño de logos', 
+            description: 'Logos' 
+          },
+          { 
+            src: '3.jpg', 
+            title: 'Ilustración Digital', 
+            description: 'Logos estilizados' 
+          },
+          { 
+            src: '4.jpg', 
+            title: 'Diseño Publicitario', 
+            description: 'Anuncio para redes sociales' 
+          },
+          { 
+            src: '5.jpg', 
+            title: 'Flayers y Posters', 
+            description: 'Diseño de flayers y posters' 
+          },
+          { 
+            src: '6.jpg', 
+            title: 'Flayers y Posters', 
+            description: 'Diseño de flayers y posters' 
+          }
+        ];
+        
+        renderGallery(imagenes);
+        $('#loadingOverlay').fadeOut(800);
+      }, 1500);
+      
+      // Función para renderizar la galería
+      function renderGallery(imagenes) {
+        const imagesContainer = $('#imagesContainer');
+        
+        // Renderizar imágenes
+        if (imagenes.length > 0) {
+          imagenes.forEach((img, index) => {
+            const galleryItem = createGalleryItem(img, index);
+            imagesContainer.append(galleryItem);
+          });
+        } else {
+          imagesContainer.html('<div class="no-content"><i class="bi bi-image me-2"></i> No hay imágenes disponibles</div>');
+        }
+        
+        // Agregar eventos a los elementos de la galería
+        $('.gallery-item').click(function() {
+          const index = $(this).data('index');
+          const item = imagenes[index];
+          openGalleryModal(item);
+        });
+      }
+      
+      // Función para crear un elemento de galería
+      function createGalleryItem(item, index) {
+        return `
+          <div class="gallery-item" data-index="${index}">
+            <img src="${item.src}" alt="${item.title}">
+            <div class="item-overlay">
+              <h5>${item.title}</h5>
+              <p>${item.description}</p>
+            </div>
+            <div class="item-type">
+              <i class="bi bi-image"></i> Imagen
+            </div>
+          </div>
+        `;
+      }
+      
+      // Abrir modal de galería
+      function openGalleryModal(item) {
+        const mediaContent = `<img src="${item.src}" alt="${item.title}">`;
+        $('#modalMedia').html(mediaContent);
+        $('#modalTitle').text(item.title);
+        $('#modalDescription').text(item.description);
+        $('#galleryModal').addClass('active');
+      }
+      
+      // Cerrar modal al hacer clic en la X
+      $('#modalClose').click(function() {
+        $('#galleryModal').removeClass('active');
+      });
+      
+      // Cerrar modal al hacer clic fuera del contenido
+      $('#galleryModal').click(function(e) {
+        if ($(e.target).is('#galleryModal')) {
+          $(this).removeClass('active');
+        }
+      });
+    });
+  </script>
+</body>
+</html>
