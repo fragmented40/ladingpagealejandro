@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Portafolio Profesional - Rafael Montes</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+  
+</head>
+<body>
+  <!-- Botón de scroll arriba -->
+  <div class="scroll-top" id="scrollTop">
+    <i class="bi bi-arrow-up" style="font-size: 1.5rem; color: #121212;"></i>
+  </div>
+
+  <div class="container">
+    <!-- Header -->
+    <div class="header-title fade-in">
+      <h1>Rafael Montes</h1>
+      <p>Diseñador Gráfico & Especialista en Branding</p>
+    </div>
+
+    <!-- Panel de información -->
+    <div class="info-container fade-in">
+      <div class="profile-section">
+        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&h=400&q=80" alt="Imagen de perfil" class="profile-img mb-4 floating">
+        <h3 class="mb-3">Rafael Montes</h3>
+        <div class="contact-info">
+          <div class="contact-item">
+            <i class="bi bi-geo-alt"></i> Santa Inés, Edo Aragua
+          </div>
+          <div class="contact-item">
+            <i class="bi bi-briefcase"></i> 5 años
+          </div>
+        </div>
+      </div>
+      
+      <div class="info-section">
+        <h5 class="section-title">Sobre Mí</h5>
+        <div class="about-me" id="aboutMeContent">
+          Diseñador gráfico con 5 años de experiencia especializado en publicidad, identidad gráfica y social media. Mi enfoque creativo combina estética minimalista con funcionalidad para crear soluciones visuales impactantes. Apasionado por el branding y la creación de experiencias visuales memorables que conectan marcas con sus audiencias.
+        </div>
+        
+        <h5 class="section-title">Habilidades</h5>
+        <div class="skills-container" id="skillsContainer">
+          <!-- Habilidades se agregarán dinámicamente aquí -->
+        </div>
+        
+        <h5 class="section-title">Especialización</h5>
+        <p>Publicidad, Identidad gráfica, Social Media, Branding, Diseño UI/UX</p>
+        
+        <div class="contact-info">
+          <div class="contact-item">
+            <i class="bi bi-envelope"></i> alejandrorf99@gmail.com
+          </div>
+          <div class="contact-item">
+            <i class="bi bi-whatsapp"></i> +58 416 808 3359
+          </div>
+        </div>
+      </div>
+      
+      <div class="actions-section">
+        <div class="btn-vertical">
+          <label>Contacto</label>
+          <a href="https://wa.me/584168083359" target="_blank" class="btn btn-whatsapp">
+            <i class="bi bi-whatsapp"></i> WhatsApp
+          </a>
+          <a href="https://mail.google.com/mail/?view=cm&fs=1&to=alejandrorf99@gmail.com" target="_blank" class="btn btn-email">
+            <i class="bi bi-envelope"></i> Gmail
+          </a>
+          
+          <label class="mt-4">Administración</label>
+          <button class="btn btn-edit" id="Información" onclick="mostrarLogin()">
+            <i class="bi bi-pencil-square"></i> Editar
+          </button>
+          <button class="btn btn-info" id="Desarrollador" data-bs-toggle="modal" data-bs-target="#developerModal">
+            <i class="bi bi-info-circle"></i> Desarrollador
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sección de Galería -->
+    <div class="gallery fade-in">
+      <h5 class="section-title">Portafolio</h5>
+      
+      <div class="portfolio-filters">
+        <button class="filter-btn active" data-filter="all">Todos</button>
+        <button class="filter-btn" data-filter="imagen">Imágenes</button>
+        <button class="filter-btn" data-filter="video">Videos</button>
+        <button class="filter-btn" data-filter="branding">Branding</button>
+        <button class="filter-btn" data-filter="social">Social Media</button>
+      </div>
+      
+      <div class="gallery-grid" id="galleryContainer">
+        <!-- Elementos de galería se agregarán dinámicamente aquí -->
+      </div>
+    </div>
+
+    <!-- Modal de galería -->
+    <div class="gallery-modal" id="galleryModal">
+      <div class="close-modal" id="closeModal">
+        <i class="bi bi-x"></i>
+      </div>
+      
+      <div class="modal-nav prev-btn" id="prevBtn">
+        <i class="bi bi-arrow-left"></i>
+      </div>
+      
+      <div class="modal-content" id="modalContent">
+        <!-- Contenido dinámico se cargará aquí -->
+      </div>
+      
+      <div class="modal-nav next-btn" id="nextBtn">
+        <i class="bi bi-arrow-right"></i>
+      </div>
+    </div>
+
+    <!-- Sección de Login -->
+    <div class="my-4 p-4 bg-dark rounded fade-in" id="loginSection" style="display: none;">
+      <h4 class="mb-3">Acceso de Administrador</h4>
+      <div class="mb-3">
+        <input type="password" class="form-control mb-3" id="loginPassword" placeholder="Contraseña">
+        <div class="d-flex gap-2">
+          <button class="btn btn-primary flex-grow-1" onclick="validarAcceso()">Ingresar</button>
+          <button class="btn btn-outline-primary" onclick="cerrarLogin()">Cancelar</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sección de Edición -->
+    <div class="my-4 p-4 bg-dark rounded fade-in" id="editSection" style="display: none;">
+      <h3 class="mb-4">Editar Información</h3>
+      
+      <div class="row mb-4">
+        <div class="col-md-6 mb-3">
+          <label class="form-label">Nombre</label>
+          <input type="text" class="form-control" id="editName" value="Rafael Montes">
+        </div>
+        <div class="col-md-6 mb-3">
+          <label class="form-label">Ubicación</label>
+          <input type="text" class="form-control" id="editUbicacion" value="Santa Inés, Edo Aragua">
+        </div>
+        <div class="col-md-6 mb-3">
+          <label class="form-label">Experiencia</label>
+          <input type="text" class="form-control" id="editExperiencia" value="5 años">
+        </div>
+        <div class="col-md-6 mb-3">
+          <label class="form-label">Especialización</label>
+          <input type="text" class="form-control" id="editEspecializacion" value="Publicidad, Identidad gráfica, Social Media">
+        </div>
+        <div class="col-md-6 mb-3">
+          <label class="form-label">Email</label>
+          <input type="email" class="form-control" id="editEmail" value="alejandrorf99@gmail.com">
+        </div>
+        <div class="col-md-6 mb-3">
+          <label class="form-label">WhatsApp</label>
+          <input type="text" class="form-control" id="editWhatsapp" value="+58 416 808 3359">
+        </div>
+      </div>
+      
+      <div class="mb-4">
+        <label class="form-label">Sobre Mí</label>
+        <textarea class="form-control" id="editSobreMi" rows="5">Diseñador gráfico con 5 años de experiencia especializado en publicidad, identidad gráfica y social media. Mi enfoque creativo combina estética minimalista con funcionalidad para crear soluciones visuales impactantes. Apasionado por el branding y la creación de experiencias visuales memorables que conectan marcas con sus audiencias.</textarea>
+      </div>
+      
+      <div class="mb-4">
+        <label class="form-label">Habilidades</label>
+        <div class="skills-container mb-3" id="editSkillsContainer">
+          <!-- Habilidades en edición se agregarán dinámicamente aquí -->
+        </div>
+        
+        <div class="skill-input-container">
+          <input type="text" class="form-control" id="newSkillInput" placeholder="Agregar nueva habilidad">
+          <button class="btn btn-primary" onclick="addSkill()">Agregar</button>
+        </div>
+      </div>
+      
+      <div class="mb-4">
+        <label class="form-label">Nueva Contraseña (dejar en blanco para no cambiar)</label>
+        <input type="password" class="form-control" id="editNewPassword">
+      </div>
+      
+      <div class="mb-4">
+        <label class="form-label">Cambiar Imagen de Perfil</label>
+        <input class="form-control" type="file" id="editProfile">
+      </div>
+      
+      <div class="d-flex justify-content-end gap-2">
+        <button class="btn btn-outline-primary" onclick="cerrarEdit()">Cancelar</button>
+        <button class="btn btn-primary" onclick="guardarInfo()">Guardar Cambios</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div class="footer fade-in">
+    <div class="container">
+      <p>© 2023 Rafael Montes - Diseñador Gráfico | Todos los derechos reservados</p>
+      <p>Desarrollado con <i class="bi bi-heart-fill" style="color: #b4975a;"></i> por Rafael Montes</p>
+    </div>
+  </div>
+
+  <!-- Modal Info del Desarrollador -->
+  <div class="modal fade" id="developerModal" tabindex="-1" aria-labelledby="developerModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content dev-modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="developerModalLabel">Información del Desarrollador</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+        </div>
+        <div class="modal-body">
+          <p><strong>Nombre:</strong> Rafael Montes</p>
+          <p><strong>Email:</strong> alejandrorf99@gmail.com</p>
+          <p><strong>LinkedIn:</strong> <a href="#" style="color:#b4975a;">linkedin.com/in/rafaelmontes</a></p>
+          <p><strong>GitHub:</strong> <a href="#" style="color:#b4975a;">github.com/rafaelmontes</a></p>
+          <p><strong>Especialización:</strong> Desarrollo Frontend, Diseño UI/UX</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts de Bootstrap y funciones de JavaScript -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    // Datos iniciales
+    let contraseñaGuardada = "admin123";
+    let habilidades = ['Diseño Gráfico', 'Branding', 'Adobe Photoshop', 'Illustrator', 'Social Media', 'UI/UX'];
+    let sobreMi = "Diseñador gráfico con 5 años de experiencia especializado en publicidad, identidad gráfica y social media. Mi enfoque creativo combina estética minimalista con funcionalidad para crear soluciones visuales impactantes. Apasionado por el branding y la creación de experiencias visuales memorables que conectan marcas con sus audiencias.";
+    
+    // Datos de la galería
+    const portfolioItems = [
+      {
+        type: 'imagen',
+        category: 'branding',
+        src: 'https://images.unsplash.com/photo-1600880292089-90a7e086ee0c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&h=400&q=80',
+        title: 'Branding Corporativo',
+        description: 'Identidad visual para empresa de tecnología.'
+      },
+      {
+        type: 'video',
+        category: 'social',
+        src: 'https://assets.mixkit.co/videos/preview/mixkit-close-up-of-a-businesswoman-using-her-phone-4453-large.mp4',
+        title: 'Campaña Social Media',
+        description: 'Estrategia visual para redes sociales.'
+      },
+      {
+        type: 'imagen',
+        category: 'branding',
+        src: 'https://images.unsplash.com/photo-1600857544200-b2f666a9a2ec?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&h=400&q=80',
+        title: 'Diseño de Packaging',
+        description: 'Embalaje para línea de productos orgánicos.'
+      },
+      {
+        type: 'video',
+        category: 'social',
+        src: 'https://assets.mixkit.co/videos/preview/mixkit-woman-taking-photos-of-a-flower-4455-large.mp4',
+        title: 'Contenido para Instagram',
+        description: 'Creación de contenido visual para redes sociales.'
+      },
+      {
+        type: 'imagen',
+        category: 'branding',
+        src: 'https://images.unsplash.com/photo-1551650975-87deedd944c3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&h=400&q=80',
+        title: 'Diseño Web',
+        description: 'Interfaz de usuario para aplicación móvil.'
+      },
+      {
+        type: 'imagen',
+        category: 'branding',
+        src: 'https://images.unsplash.com/photo-1547658719-da2b51169166?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&h=400&q=80',
+        title: 'Identidad de Marca',
+        description: 'Diseño de logotipo y elementos gráficos.'
+      },
+      {
+        type: 'video',
+        category: 'social',
+        src: 'https://assets.mixkit.co/videos/preview/mixkit-man-walking-on-a-path-in-a-forest-4457-large.mp4',
+        title: 'Video Promocional',
+        description: 'Creación de contenido audiovisual para campañas.'
+      },
+      {
+        type: 'imagen',
+        category: 'branding',
+        src: 'https://images.unsplash.com/photo-1542744095-291d1f67b221?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&h=400&q=80',
+        title: 'Diseño Editorial',
+        description: 'Maquetación de revista corporativa.'
+      }
+    ];
+    
+    // Variables para la galería
+    let currentItemIndex = 0;
+    
+    // Inicializar habilidades y galería al cargar
+    document.addEventListener('DOMContentLoaded', function() {
+      renderSkills();
+      renderGallery();
+      initScrollTop();
+      initGallery();
+    });
+    
+    // Funciones para gestionar habilidades
+    function renderSkills() {
+      const skillsContainer = document.getElementById('skillsContainer');
+      const editSkillsContainer = document.getElementById('editSkillsContainer');
+      
+      skillsContainer.innerHTML = '';
+      editSkillsContainer.innerHTML = '';
+      
+      habilidades.forEach((skill, index) => {
+        // Para la vista principal
+        const skillTag = document.createElement('div');
+        skillTag.className = 'skill-tag';
+        skillTag.innerHTML = `<i class="bi bi-check-circle"></i> ${skill}`;
+        skillsContainer.appendChild(skillTag);
+        
+        // Para la vista de edición
+        const editSkillTag = document.createElement('div');
+        editSkillTag.className = 'skill-tag';
+        editSkillTag.innerHTML = `${skill} <i class="bi bi-x" onclick="removeSkill(${index})"></i>`;
+        editSkillsContainer.appendChild(editSkillTag);
+      });
+    }
+    
+    function addSkill() {
+      const input = document.getElementById('newSkillInput');
+      const newSkill = input.value.trim();
+      
+      if (newSkill) {
+        habilidades.push(newSkill);
+        renderSkills();
+        input.value = '';
+      }
+    }
+    
+    function removeSkill(index) {
+      habilidades.splice(index, 1);
+      renderSkills();
+    }
+    
+    // Funciones para la galería
+    function renderGallery(filter = 'all') {
+      const galleryContainer = document.getElementById('galleryContainer');
+      galleryContainer.innerHTML = '';
+      
+      const filteredItems = filter === 'all' 
+        ? portfolioItems 
+        : portfolioItems.filter(item => 
+            item.type === filter || 
+            item.category === filter
+          );
+      
+      filteredItems.forEach((item, index) => {
+        const galleryItem = document.createElement('div');
+        galleryItem.className = 'gallery-item';
+        galleryItem.dataset.index = index;
+        
+        let mediaElement;
+        if (item.type === 'imagen') {
+          mediaElement = document.createElement('img');
+          mediaElement.src = item.src;
+          mediaElement.alt = item.title;
+        } else {
+          mediaElement = document.createElement('video');
+          mediaElement.src = item.src;
+          mediaElement.muted = true;
+          mediaElement.loop = true;
+        }
+        
+        const overlay = document.createElement('div');
+        overlay.className = 'item-overlay';
+        overlay.innerHTML = `
+          <h5>${item.title}</h5>
+          <p>${item.description}</p>
+        `;
+        
+        const typeTag = document.createElement('div');
+        typeTag.className = 'item-type';
+        typeTag.innerHTML = `
+          <i class="bi ${item.type === 'imagen' ? 'bi-image' : 'bi-play-circle'}"></i>
+          ${item.type === 'imagen' ? 'Imagen' : 'Video'}
+        `;
+        
+        galleryItem.appendChild(mediaElement);
+        galleryItem.appendChild(overlay);
+        galleryItem.appendChild(typeTag);
+        
+        galleryItem.addEventListener('click', () => openGalleryModal(index));
+        
+        galleryContainer.appendChild(galleryItem);
+        
+        // Si es un video, reproducirlo automáticamente al pasar el mouse
+        if (item.type === 'video') {
+          galleryItem.addEventListener('mouseenter', () => mediaElement.play());
+          galleryItem.addEventListener('mouseleave', () => {
+            mediaElement.pause();
+            mediaElement.currentTime = 0;
+          });
+        }
+      });
+    }
+    
+    function initGallery() {
+      // Filtros
+      const filterButtons = document.querySelectorAll('.filter-btn');
+      filterButtons.forEach(button => {
+        button.addEventListener('click', () => {
+          document.querySelector('.filter-btn.active').classList.remove('active');
+          button.classList.add('active');
+          renderGallery(button.dataset.filter);
+        });
+      });
+      
+      // Cerrar modal
+      document.getElementById('closeModal').addEventListener('click', closeGalleryModal);
+      
+      // Navegación
+      document.getElementById('prevBtn').addEventListener('click', showPrevItem);
+      document.getElementById('nextBtn').addEventListener('click', showNextItem);
+      
+      // Cerrar al hacer clic fuera del contenido
+      document.getElementById('galleryModal').addEventListener('click', (e) => {
+        if (e.target === document.getElementById('galleryModal')) {
+          closeGalleryModal();
+        }
+      });
+      
+      // Cerrar con tecla ESC
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+          closeGalleryModal();
+        }
+      });
+    }
+    
+    function openGalleryModal(index) {
+      currentItemIndex = parseInt(index);
+      updateModalContent();
+      document.getElementById('galleryModal').classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+    
+    function closeGalleryModal() {
+      document.getElementById('galleryModal').classList.remove('active');
+      document.body.style.overflow = 'auto';
+      
+      // Detener cualquier video que se esté reproduciendo
+      const video = document.querySelector('#modalContent video');
+      if (video) {
+        video.pause();
+      }
+    }
+    
+    function updateModalContent() {
+      const modalContent = document.getElementById('modalContent');
+      const item = portfolioItems[currentItemIndex];
+      
+      let contentElement;
+      if (item.type === 'imagen') {
+        contentElement = document.createElement('img');
+        contentElement.src = item.src;
+        contentElement.alt = item.title;
+      } else {
+        contentElement = document.createElement('video');
+        contentElement.src = item.src;
+        contentElement.controls = true;
+        contentElement.autoplay = true;
+        contentElement.muted = false;
+      }
+      
+      const infoElement = document.createElement('div');
+      infoElement.className = 'modal-info';
+      infoElement.innerHTML = `
+        <h4>${item.title}</h4>
+        <p>${item.description}</p>
+      `;
+      
+      modalContent.innerHTML = '';
+      modalContent.appendChild(contentElement);
+      modalContent.appendChild(infoElement);
+    }
+    
+    function showPrevItem() {
+      currentItemIndex = (currentItemIndex - 1 + portfolioItems.length) % portfolioItems.length;
+      updateModalContent();
+    }
+    
+    function showNextItem() {
+      currentItemIndex = (currentItemIndex + 1) % portfolioItems.length;
+      updateModalContent();
+    }
+    
+    // Funciones de gestión de la UI
+    function mostrarLogin() {
+      document.getElementById("loginSection").style.display = "block";
+      document.getElementById("editSection").style.display = "none";
+    }
+    
+    function cerrarLogin() {
+      document.getElementById("loginSection").style.display = "none";
+    }
+    
+    function validarAcceso() {
+      const pass = document.getElementById("loginPassword").value;
+      if (pass === contraseñaGuardada) {
+        document.getElementById("loginSection").style.display = "none";
+        document.getElementById("editSection").style.display = "block";
+        
+        // Inicializar campos de edición
+        document.getElementById("editSobreMi").value = sobreMi;
+      } else {
+        alert("Contraseña incorrecta");
+      }
+    }
+    
+    function cerrarEdit() {
+      document.getElementById("editSection").style.display = "none";
+    }
+    
+    function guardarInfo() {
+      // Obtener nuevos valores
+      const newName = document.getElementById("editName").value;
+      const newEmail = document.getElementById("editEmail").value;
+      const newWhatsapp = document.getElementById("editWhatsapp").value;
+      const newPass = document.getElementById("editNewPassword").value;
+      sobreMi = document.getElementById("editSobreMi").value;
+      
+      // Actualizar la información en pantalla
+      document.querySelector(".profile-section h3").textContent = newName;
+      document.querySelector(".info-section .contact-item:nth-child(1)").innerHTML = `<i class="bi bi-envelope"></i> ${newEmail}`;
+      document.querySelector(".info-section .contact-item:nth-child(2)").innerHTML = `<i class="bi bi-whatsapp"></i> ${newWhatsapp}`;
+      
+      // Actualizar "Sobre Mí"
+      document.getElementById("aboutMeContent").textContent = sobreMi;
+      
+      // Actualizar habilidades
+      renderSkills();
+      
+      // Actualizar contraseña si se proporcionó una nueva
+      if (newPass.trim() !== "") {
+        contraseñaGuardada = newPass;
+      }
+      
+      // Actualizar la imagen de perfil si se seleccionó un archivo
+      const fileInput = document.getElementById("editProfile");
+      if (fileInput.files && fileInput.files[0]) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+          document.querySelector(".profile-img").src = e.target.result;
+        };
+        reader.readAsDataURL(fileInput.files[0]);
+      }
+      
+      alert("Información actualizada correctamente");
+      cerrarEdit();
+    }
+    
+    // Función para el botón de scroll arriba
+    function initScrollTop() {
+      const scrollTop = document.getElementById('scrollTop');
+      
+      window.addEventListener('scroll', () => {
+        if (window.pageYOffset > 300) {
+          scrollTop.classList.add('show');
+        } else {
+          scrollTop.classList.remove('show');
+        }
+      });
+      
+      scrollTop.addEventListener('click', () => {
+        window.scrollTo({
+          top: 0,
+          behavior: 'smooth'
+        });
+      });
+    }
+  </script>
+</body>
+</html>
