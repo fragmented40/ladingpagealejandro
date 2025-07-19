@@ -307,6 +307,35 @@
       gap: 5px;
     }
     
+    /* Loading Overlay */
+    .loading-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.8);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+      color: white;
+    }
+    
+    .spinner {
+      width: 50px;
+      height: 50px;
+      border: 5px solid rgba(255,255,255,0.3);
+      border-radius: 50%;
+      border-top-color: var(--primary-color);
+      animation: spin 1s linear infinite;
+    }
+    
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+    
     /* Footer */
     .footer {
       background: var(--dark-color);
@@ -343,6 +372,12 @@
   </style>
 </head>
 <body>
+  <!-- Overlay de carga -->
+  <div class="loading-overlay" id="loadingOverlay">
+    <div class="spinner"></div>
+    <div class="text-white mt-4">Cargando portafolio...</div>
+  </div>
+
   <div class="container">
     <!-- Header -->
     <div class="header-title">
@@ -442,75 +477,7 @@
       </div>
       
       <div class="gallery-grid" id="galleryContainer">
-        <div class="gallery-item">
-          <img src="https://images.unsplash.com/photo-1600880292089-90a7e086ee0c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&h=400&q=80" alt="Branding Corporativo">
-          <div class="item-overlay">
-            <h5>Branding Corporativo</h5>
-            <p>Identidad visual para empresa de tecnología con enfoque moderno</p>
-          </div>
-          <div class="item-type">
-            <i class="bi bi-image"></i> Imagen
-          </div>
-        </div>
-        
-        <div class="gallery-item">
-          <video muted loop>
-            <source src="https://assets.mixkit.co/videos/preview/mixkit-close-up-of-a-businesswoman-using-her-phone-4453-large.mp4" type="video/mp4">
-          </video>
-          <div class="item-overlay">
-            <h5>Campaña Social Media</h5>
-            <p>Estrategia visual para redes sociales con enfoque en engagement</p>
-          </div>
-          <div class="item-type">
-            <i class="bi bi-play-circle"></i> Video
-          </div>
-        </div>
-        
-        <div class="gallery-item">
-          <img src="https://images.unsplash.com/photo-1600857544200-b2f666a9a2ec?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&h=400&q=80" alt="Diseño de Packaging">
-          <div class="item-overlay">
-            <h5>Diseño de Packaging</h5>
-            <p>Embalaje para línea de productos orgánicos con enfoque ecológico</p>
-          </div>
-          <div class="item-type">
-            <i class="bi bi-image"></i> Imagen
-          </div>
-        </div>
-        
-        <div class="gallery-item">
-          <video muted loop>
-            <source src="https://assets.mixkit.co/videos/preview/mixkit-woman-taking-photos-of-a-flower-4455-large.mp4" type="video/mp4">
-          </video>
-          <div class="item-overlay">
-            <h5>Contenido para Instagram</h5>
-            <p>Creación de contenido visual para redes sociales</p>
-          </div>
-          <div class="item-type">
-            <i class="bi bi-play-circle"></i> Video
-          </div>
-        </div>
-        
-        <div class="gallery-item">
-          <img src="https://images.unsplash.com/photo-1588196749597-9ff075ee6b5b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&h=400&q=80" alt="Diseño Editorial">
-          <div class="item-overlay">
-            <h5>Diseño Editorial</h5>
-            <p>Diseño de revista corporativa con enfoque en tipografía</p>
-          </div>
-          <div class="item-type">
-            <i class="bi bi-image"></i> Imagen
-          </div>
-        </div>
-        
-        <div class="gallery-item">
-          <img src="https://images.unsplash.com/photo-1558655146-d09347e92766?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&h=400&q=80" alt="Identidad de Marca">
-          <div class="item-overlay">
-            <h5>Identidad de Marca</h5>
-            <p>Desarrollo de identidad completa para startup de tecnología</p>
-          </div>
-          <div class="item-type">
-            <i class="bi bi-image"></i> Imagen
-          </div>
-        </div>
+        <!-- Elementos de galería se agregarán automáticamente -->
       </div>
     </div>
 
@@ -526,54 +493,103 @@
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <script>
     $(document).ready(function() {
-      // Inicializar filtros de galería
-      $('.filter-btn').click(function() {
-        const filter = $(this).data('filter');
+      // Lista de archivos de ejemplo (en un caso real, esto se generaría automáticamente)
+      const mediaFiles = [
+        { type: 'imagen', src: 'imagenes/branding-corporativo.jpg', title: 'Branding Corporativo', description: 'Identidad visual para empresa de tecnología' },
+        { type: 'imagen', src: 'imagenes/diseno-packaging.jpg', title: 'Diseño de Packaging', description: 'Embalaje para productos orgánicos' },
+        { type: 'imagen', src: 'imagenes/diseno-editorial.jpg', title: 'Diseño Editorial', description: 'Revista corporativa con enfoque tipográfico' },
+        { type: 'imagen', src: 'imagenes/identidad-marca.jpg', title: 'Identidad de Marca', description: 'Desarrollo de identidad para startup' },
+        { type: 'imagen', src: 'imagenes/web-design.jpg', title: 'Diseño Web', description: 'Interfaz de usuario moderna y funcional' },
+        { type: 'imagen', src: 'imagenes/social-media.jpg', title: 'Contenido Social Media', description: 'Creación de contenido para redes' },
+        { type: 'video', src: 'videos/campaña-social.mp4', title: 'Campaña Social Media', description: 'Estrategia visual para redes sociales' },
+        { type: 'video', src: 'videos/contenido-instagram.mp4', title: 'Contenido Instagram', description: 'Creación de contenido visual' }
+      ];
+
+      // Simular carga de archivos desde carpetas
+      setTimeout(() => {
+        renderGallery(mediaFiles);
+        initGalleryFilters();
+        $('#loadingOverlay').hide();
+      }, 1500);
+
+      // Renderizar galería
+      function renderGallery(files) {
+        const galleryContainer = $('#galleryContainer');
+        galleryContainer.empty();
         
-        // Actualizar botones activos
-        $('.filter-btn').removeClass('active');
-        $(this).addClass('active');
+        files.forEach((file, index) => {
+          const galleryItem = $(`
+            <div class="gallery-item" data-index="${index}">
+              ${file.type === 'imagen' ? 
+                `<img src="${file.src}" alt="${file.title}">` : 
+                `<video src="${file.src}" muted loop></video>`}
+              <div class="item-overlay">
+                <h5>${file.title}</h5>
+                <p>${file.description}</p>
+              </div>
+              <div class="item-type">
+                <i class="bi ${file.type === 'imagen' ? 'bi-image' : 'bi-play-circle'}"></i>
+                ${file.type === 'imagen' ? 'Imagen' : 'Video'}
+              </div>
+            </div>
+          `);
+          
+          galleryContainer.append(galleryItem);
+        });
         
-        // Filtrar galería
-        if (filter === 'all') {
-          $('.gallery-item').show();
-        } else {
-          $('.gallery-item').each(function() {
-            const type = $(this).find('img').length ? 'imagen' : 'video';
-            if (type === filter) {
-              $(this).show();
-            } else {
-              $(this).hide();
-            }
-          });
-        }
-      });
+        // Agregar eventos a los nuevos elementos
+        $('.gallery-item').click(function() {
+          const index = $(this).data('index');
+          openGalleryModal(files[index]);
+        });
+      }
       
-      // Agregar eventos a los elementos de la galería
-      $('.gallery-item').click(function() {
-        const title = $(this).find('h5').text();
-        const description = $(this).find('p').text();
+      // Inicializar filtros de galería
+      function initGalleryFilters() {
+        $('.filter-btn').click(function() {
+          const filter = $(this).data('filter');
+          
+          // Actualizar botones activos
+          $('.filter-btn').removeClass('active');
+          $(this).addClass('active');
+          
+          // Filtrar galería
+          if (filter === 'all') {
+            $('.gallery-item').show();
+          } else {
+            $('.gallery-item').each(function() {
+              const type = $(this).find('img').length ? 'imagen' : 'video';
+              if (type === filter) {
+                $(this).show();
+              } else {
+                $(this).hide();
+              }
+            });
+          }
+        });
+      }
+      
+      // Abrir modal de galería
+      function openGalleryModal(item) {
         let content = '';
         
-        if ($(this).find('img').length) {
-          const imgSrc = $(this).find('img').attr('src');
-          content = `<img src="${imgSrc}" alt="${title}" class="img-fluid rounded" style="max-height: 60vh;">`;
+        if (item.type === 'imagen') {
+          content = `<img src="${item.src}" alt="${item.title}" class="img-fluid rounded" style="max-height: 60vh;">`;
         } else {
-          const videoSrc = $(this).find('source').attr('src');
           content = `
             <video controls autoplay class="w-100 rounded" style="max-height: 60vh;">
-              <source src="${videoSrc}" type="video/mp4">
+              <source src="${item.src}" type="video/mp4">
             </video>
           `;
         }
         
         Swal.fire({
-          title: title,
+          title: item.title,
           html: `
             <div class="my-3">
               ${content}
             </div>
-            <p class="mt-3 text-center">${description}</p>
+            <p class="mt-3 text-center">${item.description}</p>
           `,
           showCloseButton: true,
           showConfirmButton: false,
@@ -582,7 +598,17 @@
           background: '#f8f9fa',
           backdrop: 'rgba(0,0,0,0.8)'
         });
-      });
+      }
+      
+      // En un caso real, aquí se haría una petición al servidor para obtener la lista de archivos
+      function getMediaFilesFromServer() {
+        // Esta función se conectaría al servidor para obtener la lista de archivos
+        // Ejemplo: 
+        // fetch('/get-media-files')
+        //   .then(response => response.json())
+        //   .then(data => renderGallery(data))
+        //   .catch(error => console.error('Error:', error));
+      }
     });
   </script>
 </body>
